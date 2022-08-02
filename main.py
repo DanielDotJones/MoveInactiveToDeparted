@@ -52,6 +52,9 @@ for item4 in temp4:
 now = datetime.now()
 dt_string = now.strftime("%m-%d-%Y_%H-%M-%S")
 
+if not os.path.exists(os.getcwd()+'/logs'):
+    os.makedirs(os.getcwd()+'/logs')
+
 temp3.sort()
 with open("logs/"+dt_string+'.txt', 'w') as f:
     f.write("Begin Log\n\n")
