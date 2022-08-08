@@ -73,16 +73,19 @@ def main():
 
     temp2 = []
     temp4 = []
-
     log("Attempting to find inactive employees to seperate into two arrays...")
-    for row in sheet.iter_rows(max_row=566):
-        if row[3].value == 'Inactive Employee':
+    log(str(((sheet.max_row)-1)) + " rows are found")
+    for row in sheet.iter_rows(max_row=((sheet.max_row)-1)):
+        if((row[0].value is None) or (row[1].value is None) or (row[2].value is None)):
+            log("NoneType Found")
+        elif row[3].value == 'Inactive Employee':
             temp2.append((row[0].value + ', ' + row[1].value + ' ' + row[2].value).strip())
             temp4.append((row[2].value).strip())
     log("Arrays created")
 
-    log("Attempting to read folder names from the Active (Employee) Folder")
+    log("Attempting to read folder names from the Active (Employee) Folder...")
     temp1 = (next(os.walk(src_path))[1])
+    log("Folder names read.")
 
     log("Attempting to compare the Active Employee Array to the Inactive Employee Array...")
     temp3 = []
