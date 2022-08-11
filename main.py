@@ -110,7 +110,10 @@ def main():
     if not (len(temp3) == 0):
         log("Attempting to move the files below:\n")
         for items in temp3:
-            shutil.move(src_path+'/'+items, dst_path)
+            try:
+                shutil.move(src_path+'/'+items, dst_path)
+            except Exception as e:
+                logging.exception("file moving crashed. Error: %s", e)
             log("   -"+items)
             print(items)
         log("Files have been moved")
